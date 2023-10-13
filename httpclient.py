@@ -76,7 +76,7 @@ class HTTPClient(object):
     
     def GET(self, url, args=None):
 
-        # parsing done using the urllib parsing: https://docs.python.org/3/library/urllib.parse.html
+        # parsing done using the urllib parsing: https://docs.python.org/3/library/urllib.parse.html and TA Consultation
         parsed_url = urllib.parse.urlparse(url)
         path = parsed_url.path
         if path == '':
@@ -111,7 +111,7 @@ class HTTPClient(object):
 
     def POST(self, url, args=None):
 
-        # parsing done using the urllib parsing: https://docs.python.org/3/library/urllib.parse.html
+        # parsing done using the urllib parsing: https://docs.python.org/3/library/urllib.parse.html and TA Consultation
         parsed_url = urllib.parse.urlparse(url)
         path = parsed_url.path
         if path == '':
@@ -125,8 +125,8 @@ class HTTPClient(object):
 
         if args == None:
             args = ""
-        else:
-            args = urllib.parse.urlencode(args)
+        
+        args = urllib.parse.urlencode(args)
 
         content_length = len(args)
 
@@ -140,10 +140,7 @@ class HTTPClient(object):
         result = self.recvall(self.socket)
         self.close()
 
-        print(f"This is what we are receiving:\n{result}")
-
         parsed_result = result.split('\r\n\r\n')
-        print(parsed_result)
         header = self.get_headers(parsed_result)
         print(f"Header:\n{header}")
 
